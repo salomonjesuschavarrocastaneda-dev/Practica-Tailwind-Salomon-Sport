@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SALOMÓN SPORT: ropa, accesorios y equipamiento para llevar tu entrenamiento al siguiente nivel.">
+  <meta name="theme-color" content="#111111">
+  <title>SALOMÓN SPORT | Entrena con propósito</title>
+
+  <!-- Tailwind CSS 4 mediante Play CDN, como permite la guía académica -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Fuente principal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tema personalizado y variante dark controlada por la clase .dark -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-sport-black: #111111;
+      --color-sport-gray: #292929;
+      --color-sport-gold: #D4AF37;
+      --color-sport-gold-light: #E8CC70;
+      --color-sport-success: #16A34A;
+      --color-sport-error: #DC2626;
+      --color-sport-warning: #F59E0B;
+      --font-sans: "Inter", sans-serif;
+    }
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+
+  <style>
+    html { font-family: Inter, sans-serif; }
+    body { margin: 0; }
+    .hero-overlay { background: linear-gradient(90deg, rgba(10,10,10,.94) 0%, rgba(10,10,10,.76) 48%, rgba(10,10,10,.16) 100%); }
+    .gold-line { background: linear-gradient(90deg, #D4AF37, transparent); }
+    .product-image { transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+    .product-card:hover .product-image { transform: scale(1.045); }
+    .add-cart:hover { transform: scale(1.03); }
+    .faq-panel[hidden] { display: none; }
+    .toast-show { opacity: 1 !important; transform: translate(-50%, 0) !important; }
+    :focus-visible { outline: 3px solid #D4AF37; outline-offset: 3px; box-shadow: 0 0 0 6px rgba(17,17,17,.9); }
+    .skip-link:focus { clip: auto; height: auto; width: auto; overflow: visible; }
+    section[id] { scroll-margin-top: 5.5rem; }
+    img { display: block; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-slate-900 antialiased transition-colors duration-300 dark:bg-sport-black dark:text-white">
+
+  <a href="#main-content" class="skip-link sr-only fixed left-4 top-4 z-[100] rounded-lg bg-sport-gold px-4 py-3 text-sm font-black text-sport-black shadow-lg focus:not-sr-only">Saltar al contenido principal</a>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-sport-black/95 text-white shadow-[0_8px_30px_rgba(0,0,0,.18)] backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Navegación principal">
+      <a href="#inicio" class="group flex items-center gap-3" aria-label="SALOMÓN SPORT, ir al inicio">
+        <span class="grid h-10 w-10 place-items-center rounded-lg border border-sport-gold text-lg font-black text-sport-gold">S</span>
+        <span class="leading-tight">
+          <span class="block text-lg font-black tracking-[.12em]">SALOMÓN<span class="text-sport-gold">.</span></span>
+          <span class="block text-[9px] font-semibold tracking-[.36em] text-gray-400">SPORT</span>
+        </span>
+      </a>
+
+      <div id="navLinks" class="absolute left-0 right-0 top-full hidden max-h-[calc(100vh-4.25rem)] flex-col gap-1 overflow-y-auto border-t border-white/10 bg-sport-black px-5 py-5 shadow-2xl md:static md:max-h-none md:flex md:flex-row md:items-center md:gap-8 md:overflow-visible md:border-0 md:bg-transparent md:p-0 md:shadow-none" aria-label="Secciones del sitio">
+        <a class="nav-link rounded-lg px-3 py-3 text-sm text-gray-300 transition hover:bg-white/5 hover:text-sport-gold md:px-0 md:py-2 md:hover:bg-transparent" href="#inicio">Inicio</a>
+        <a class="nav-link rounded-lg px-3 py-3 text-sm text-gray-300 transition hover:bg-white/5 hover:text-sport-gold md:px-0 md:py-2 md:hover:bg-transparent" href="#productos">Productos</a>
+        <a class="nav-link rounded-lg px-3 py-3 text-sm text-gray-300 transition hover:bg-white/5 hover:text-sport-gold md:px-0 md:py-2 md:hover:bg-transparent" href="#servicios">Servicios</a>
+        <a class="nav-link rounded-lg px-3 py-3 text-sm text-gray-300 transition hover:bg-white/5 hover:text-sport-gold md:px-0 md:py-2 md:hover:bg-transparent" href="#nosotros">Nosotros</a>
+        <a class="nav-link rounded-lg px-3 py-3 text-sm text-gray-300 transition hover:bg-white/5 hover:text-sport-gold md:px-0 md:py-2 md:hover:bg-transparent" href="#contacto">Contacto</a>
+        <a href="#productos" class="mt-2 rounded-full bg-sport-gold px-5 py-2.5 text-center text-xs font-extrabold tracking-wider text-sport-black shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-sport-gold-light hover:shadow-md md:mt-0">VER COLECCIÓN</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-lg transition-all duration-300 hover:scale-105 hover:border-sport-gold hover:text-sport-gold hover:shadow-[0_0_18px_rgba(212,175,55,.2)]" aria-label="Activar modo claro u oscuro" title="Cambiar tema">
+          <span id="themeIcon" aria-hidden="true">☼</span>
+        </button>
+        <button id="menuToggle" type="button" class="grid h-10 w-10 place-items-center rounded-lg border border-white/20 text-xl transition-all duration-300 hover:scale-105 hover:border-sport-gold md:hidden" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+          <span id="menuIcon" aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO -->
+    <section id="inicio" class="relative flex min-h-[640px] items-center overflow-hidden bg-sport-black pt-20 text-white sm:min-h-[720px] sm:pt-24">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=85"
+           alt="Gimnasio moderno con máquinas y equipamiento de entrenamiento"
+           class="absolute inset-0 h-full w-full object-cover object-center opacity-75">
+      <div class="hero-overlay absolute inset-0"></div>
+      <div class="relative mx-auto w-full max-w-7xl px-5 py-20 sm:py-24 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[.32em] text-sport-gold">
+            <span class="h-px w-10 bg-sport-gold"></span> Rendimiento · Disciplina · Actitud
+          </p>
+          <h1 class="text-4xl font-black uppercase leading-[1] tracking-tight min-[430px]:text-5xl sm:text-6xl lg:text-8xl">
+            Supera tus<br><span class="text-sport-gold">límites.</span>
+          </h1>
+          <p class="mt-7 max-w-xl text-base leading-8 text-gray-300 sm:text-lg">
+            El siguiente nivel de tu entrenamiento comienza con el equipo correcto. Descubre prendas, accesorios y equipamiento para entrenar con propósito.
+          </p>
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a href="#productos" class="rounded-full bg-sport-gold px-8 py-4 text-center text-sm font-extrabold uppercase tracking-wider text-sport-black shadow-[0_12px_30px_rgba(212,175,55,.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:bg-sport-gold-light hover:shadow-[0_16px_36px_rgba(212,175,55,.32)]">Explorar productos <span aria-hidden="true">→</span></a>
+            <a href="#nosotros" class="rounded-full border border-white/50 px-8 py-4 text-center text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:border-sport-gold hover:bg-white/5 hover:text-sport-gold">Conoce la marca</a>
+          </div>
+          <div class="mt-16 flex flex-wrap gap-10 border-t border-white/20 pt-7">
+            <div><p class="text-3xl font-black text-sport-gold">100%</p><p class="mt-1 text-xs uppercase tracking-widest text-gray-400">Actitud deportiva</p></div>
+            <div><p class="text-3xl font-black text-sport-gold">GO</p><p class="mt-1 text-xs uppercase tracking-widest text-gray-400">Tu próximo reto</p></div>
+            <div><p class="text-3xl font-black text-sport-gold">∞</p><p class="mt-1 text-xs uppercase tracking-widest text-gray-400">Posibilidades</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-0 right-0 hidden h-2 w-1/3 bg-sport-gold md:block"></div>
+    </section>
+
+    <!-- FRANJA DE MARCA -->
+    <section class="bg-sport-gold py-5 text-sport-black">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-12 gap-y-3 px-5 text-center text-xs font-black uppercase tracking-[.2em] sm:justify-between">
+        <span>Entrena con propósito</span><span aria-hidden="true">✦</span><span>Construye tu mejor versión</span><span aria-hidden="true">✦</span><span>La disciplina te define</span>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos" class="bg-gray-50 py-20 transition-colors duration-300 sm:py-24 lg:py-28 dark:bg-sport-black">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p class="text-xs font-extrabold uppercase tracking-[.3em] text-amber-600 dark:text-sport-gold">Selección destacada</p>
+            <h2 class="mt-3 text-3xl font-black uppercase leading-tight tracking-tight sm:text-4xl lg:text-5xl">Equipo para <span class="text-amber-600 dark:text-sport-gold">rendir.</span></h2>
+            <p class="mt-4 max-w-xl leading-7 text-gray-600 dark:text-gray-400">Encuentra lo que necesitas para acompañar cada repetición, cada kilómetro y cada objetivo.</p>
+          </div>
+          <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">Colección deportiva · 2026</span>
+        </div>
+
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+          <!-- Producto 1 -->
+          <article class="product-card group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-gray-200/80 bg-white shadow-[0_8px_30px_rgba(17,17,17,.06)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-sport-gold/80 hover:shadow-[0_22px_48px_rgba(17,17,17,.18)] dark:border-white/10 dark:bg-sport-gray dark:shadow-none">
+            <div class="relative h-56 overflow-hidden bg-gray-200 sm:h-64">
+              <img class="product-image h-full w-full object-cover object-center" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="Zapatilla deportiva roja para entrenamiento" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+              <span class="absolute left-4 top-4 rounded-full border border-white/30 bg-sport-gold px-3 py-1.5 text-[10px] font-black uppercase tracking-[.16em] text-sport-black shadow-lg">✦ Destacado</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6"><p class="text-[10px] font-bold uppercase tracking-[.22em] text-amber-600 dark:text-sport-gold">Calzado</p><h3 class="mt-2 text-xl font-black tracking-tight text-sport-black dark:text-white">Zapatillas Active Pro</h3><p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Comodidad y estabilidad para tus sesiones de entrenamiento.</p><div class="mt-auto flex items-center justify-between gap-3 border-t border-gray-100 pt-5 dark:border-white/10"><div><span class="text-xs text-gray-400">COP</span><p class="text-xl font-black tracking-tight text-sport-black dark:text-white">$189.900</p></div><button class="add-cart shrink-0 rounded-full border border-sport-gold bg-sport-gold px-4 py-2.5 text-xs font-black text-sport-black shadow-sm transition-all duration-300 hover:bg-sport-black hover:text-sport-gold hover:border-sport-black dark:hover:bg-white dark:hover:text-sport-black dark:hover:border-white" data-product="Zapatillas Active Pro">Añadir +</button></div></div>
+          </article>
+          <!-- Producto 2 -->
+          <article class="product-card group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-gray-200/80 bg-white shadow-[0_8px_30px_rgba(17,17,17,.06)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-sport-gold/80 hover:shadow-[0_22px_48px_rgba(17,17,17,.18)] dark:border-white/10 dark:bg-sport-gray dark:shadow-none">
+            <div class="relative h-56 overflow-hidden bg-gray-200 sm:h-64"><img class="product-image h-full w-full object-cover object-center" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" alt="Persona entrenando con ropa deportiva en gimnasio" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div></div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6"><p class="text-[10px] font-bold uppercase tracking-[.22em] text-amber-600 dark:text-sport-gold">Vestuario</p><h3 class="mt-2 text-xl font-black tracking-tight text-sport-black dark:text-white">Camiseta Performance</h3><p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Diseño ligero para moverte con libertad durante tu rutina.</p><div class="mt-auto flex items-center justify-between gap-3 border-t border-gray-100 pt-5 dark:border-white/10"><div><span class="text-xs text-gray-400">COP</span><p class="text-xl font-black tracking-tight text-sport-black dark:text-white">$79.900</p></div><button class="add-cart shrink-0 rounded-full border border-sport-gold bg-transparent px-4 py-2.5 text-xs font-black text-sport-black transition-all duration-300 hover:scale-[1.03] hover:bg-sport-gold hover:shadow-[0_8px_20px_rgba(212,175,55,.22)] dark:text-white dark:hover:text-sport-black" data-product="Camiseta Performance">Añadir +</button></div></div>
+          </article>
+          <!-- Producto 3 -->
+          <article class="product-card group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-gray-200/80 bg-white shadow-[0_8px_30px_rgba(17,17,17,.06)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-sport-gold/80 hover:shadow-[0_22px_48px_rgba(17,17,17,.18)] dark:border-white/10 dark:bg-sport-gray dark:shadow-none">
+            <div class="relative h-56 overflow-hidden bg-gray-200 sm:h-64"><img class="product-image h-full w-full object-cover object-center" src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80" alt="Mancuernas para entrenamiento de fuerza" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div><span class="absolute left-4 top-4 rounded-full border border-white/30 bg-sport-gold px-3 py-1.5 text-[10px] font-black uppercase tracking-[.16em] text-sport-black shadow-lg">✦ Destacado</span></div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6"><p class="text-[10px] font-bold uppercase tracking-[.22em] text-amber-600 dark:text-sport-gold">Equipamiento</p><h3 class="mt-2 text-xl font-black tracking-tight text-sport-black dark:text-white">Set de mancuernas</h3><p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Un aliado versátil para fortalecer y progresar desde casa.</p><div class="mt-auto flex items-center justify-between gap-3 border-t border-gray-100 pt-5 dark:border-white/10"><div><span class="text-xs text-gray-400">COP</span><p class="text-xl font-black tracking-tight text-sport-black dark:text-white">$129.900</p></div><button class="add-cart shrink-0 rounded-full border border-sport-gold bg-sport-gold px-4 py-2.5 text-xs font-black text-sport-black shadow-sm transition-all duration-300 hover:bg-sport-black hover:text-sport-gold dark:hover:bg-white dark:hover:text-sport-black" data-product="Set de mancuernas">Añadir +</button></div></div>
+          </article>
+          <!-- Producto 4 -->
+          <article class="product-card group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-gray-200/80 bg-white shadow-[0_8px_30px_rgba(17,17,17,.06)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-sport-gold/80 hover:shadow-[0_22px_48px_rgba(17,17,17,.18)] dark:border-white/10 dark:bg-sport-gray dark:shadow-none">
+            <div class="relative h-56 overflow-hidden bg-gray-200 sm:h-64"><img class="product-image h-full w-full object-cover object-center" src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=900&q=80" alt="Accesorios de entrenamiento y gimnasio" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div></div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6"><p class="text-[10px] font-bold uppercase tracking-[.22em] text-amber-600 dark:text-sport-gold">Accesorios</p><h3 class="mt-2 text-xl font-black tracking-tight text-sport-black dark:text-white">Kit de entrenamiento</h3><p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Accesorios prácticos para complementar tus ejercicios.</p><div class="mt-auto flex items-center justify-between gap-3 border-t border-gray-100 pt-5 dark:border-white/10"><div><span class="text-xs text-gray-400">COP</span><p class="text-xl font-black tracking-tight text-sport-black dark:text-white">$99.900</p></div><button class="add-cart shrink-0 rounded-full border border-sport-gold bg-transparent px-4 py-2.5 text-xs font-black text-sport-black transition-all duration-300 hover:scale-[1.03] hover:bg-sport-gold hover:shadow-[0_8px_20px_rgba(212,175,55,.22)] dark:text-white dark:hover:text-sport-black" data-product="Kit de entrenamiento">Añadir +</button></div></div>
+          </article>
+          <!-- Producto 5 -->
+          <article class="product-card group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-gray-200/80 bg-white shadow-[0_8px_30px_rgba(17,17,17,.06)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-sport-gold/80 hover:shadow-[0_22px_48px_rgba(17,17,17,.18)] dark:border-white/10 dark:bg-sport-gray dark:shadow-none">
+            <div class="relative h-56 overflow-hidden bg-gray-200 sm:h-64"><img class="product-image h-full w-full object-cover object-center" src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80" alt="Botella reutilizable para hidratación deportiva" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div></div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6"><p class="text-[10px] font-bold uppercase tracking-[.22em] text-amber-600 dark:text-sport-gold">Hidratación</p><h3 class="mt-2 text-xl font-black tracking-tight text-sport-black dark:text-white">Botella Sport 750 ml</h3><p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Hidratación práctica para acompañarte en cada entrenamiento.</p><div class="mt-auto flex items-center justify-between gap-3 border-t border-gray-100 pt-5 dark:border-white/10"><div><span class="text-xs text-gray-400">COP</span><p class="text-xl font-black tracking-tight text-sport-black dark:text-white">$39.900</p></div><button class="add-cart shrink-0 rounded-full border border-sport-gold bg-transparent px-4 py-2.5 text-xs font-black text-sport-black transition-all duration-300 hover:scale-[1.03] hover:bg-sport-gold hover:shadow-[0_8px_20px_rgba(212,175,55,.22)] dark:text-white dark:hover:text-sport-black" data-product="Botella Sport 750 ml">Añadir +</button></div></div>
+          </article>
+          <!-- Producto 6 -->
+          <article class="product-card group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-gray-200/80 bg-white shadow-[0_8px_30px_rgba(17,17,17,.06)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-sport-gold/80 hover:shadow-[0_22px_48px_rgba(17,17,17,.18)] dark:border-white/10 dark:bg-sport-gray dark:shadow-none">
+            <div class="relative h-56 overflow-hidden bg-gray-200 sm:h-64"><img class="product-image h-full w-full object-cover object-center" src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=80" alt="Persona realizando ejercicio con cuerda de entrenamiento" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div></div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6"><p class="text-[10px] font-bold uppercase tracking-[.22em] text-amber-600 dark:text-sport-gold">Entrenamiento</p><h3 class="mt-2 text-xl font-black tracking-tight text-sport-black dark:text-white">Cuerda de resistencia</h3><p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Ideal para activar tu cuerpo y sumar variedad a tu rutina.</p><div class="mt-auto flex items-center justify-between gap-3 border-t border-gray-100 pt-5 dark:border-white/10"><div><span class="text-xs text-gray-400">COP</span><p class="text-xl font-black tracking-tight text-sport-black dark:text-white">$49.900</p></div><button class="add-cart shrink-0 rounded-full border border-sport-gold bg-transparent px-4 py-2.5 text-xs font-black text-sport-black transition-all duration-300 hover:scale-[1.03] hover:bg-sport-gold hover:shadow-[0_8px_20px_rgba(212,175,55,.22)] dark:text-white dark:hover:text-sport-black" data-product="Cuerda de resistencia">Añadir +</button></div></div>
+          </article>
+        </div>
+        <p class="mt-7 text-center text-xs text-gray-500 dark:text-gray-500">Precios ilustrativos para el prototipo académico. La tienda no procesa pagos reales.</p>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="bg-white py-20 transition-colors duration-300 sm:py-24 lg:py-28 dark:bg-[#181818]">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mx-auto mb-14 max-w-2xl text-center">
+          <p class="text-xs font-extrabold uppercase tracking-[.3em] text-amber-600 dark:text-sport-gold">Más que una tienda</p>
+          <h2 class="mt-3 text-3xl font-black uppercase leading-tight sm:text-4xl lg:text-5xl">Tu entrenamiento, <span class="text-amber-600 dark:text-sport-gold">nuestro enfoque.</span></h2>
+        </div>
+        <div class="grid gap-6 md:grid-cols-3">
+          <article class="rounded-2xl border border-gray-200 p-8 transition hover:border-sport-gold hover:shadow-lg dark:border-white/10"><span class="text-4xl text-amber-600 dark:text-sport-gold">01</span><h3 class="mt-6 text-xl font-extrabold">Asesoría deportiva</h3><p class="mt-3 leading-7 text-gray-600 dark:text-gray-400">Te orientamos para elegir artículos de acuerdo con tu actividad y tus objetivos.</p></article>
+          <article class="rounded-2xl border border-gray-200 p-8 transition hover:border-sport-gold hover:shadow-lg dark:border-white/10"><span class="text-4xl text-amber-600 dark:text-sport-gold">02</span><h3 class="mt-6 text-xl font-extrabold">Equipamiento fitness</h3><p class="mt-3 leading-7 text-gray-600 dark:text-gray-400">Encuentra accesorios y herramientas para complementar tus sesiones de ejercicio.</p></article>
+          <article class="rounded-2xl border border-gray-200 p-8 transition hover:border-sport-gold hover:shadow-lg dark:border-white/10"><span class="text-4xl text-amber-600 dark:text-sport-gold">03</span><h3 class="mt-6 text-xl font-extrabold">Atención personalizada</h3><p class="mt-3 leading-7 text-gray-600 dark:text-gray-400">Resolvemos tus inquietudes para que tengas una experiencia de compra clara.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section id="nosotros" class="bg-sport-black py-20 text-white sm:py-24 lg:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&fit=crop&w=1100&q=85" alt="Atleta entrenando con pesas en un gimnasio" class="h-[440px] w-full rounded-2xl object-cover" loading="lazy">
+          <div class="absolute -bottom-5 -right-3 rounded-xl bg-sport-gold px-7 py-5 text-sport-black shadow-xl sm:right-5"><p class="text-2xl font-black">Tu mejor versión</p><p class="mt-1 text-xs font-bold uppercase tracking-widest">Empieza hoy</p></div>
+        </div>
+        <div class="pt-5 lg:pl-8">
+          <p class="text-xs font-extrabold uppercase tracking-[.3em] text-sport-gold">Nuestra esencia</p>
+          <h2 class="mt-4 text-3xl font-black uppercase leading-tight sm:text-4xl lg:text-5xl">La disciplina construye <span class="text-sport-gold">resultados.</span></h2>
+          <p class="mt-7 leading-8 text-gray-300">SALOMÓN SPORT nace como una propuesta de tienda deportiva enfocada en acompañar a las personas que buscan superarse. Creemos que cada objetivo comienza con una decisión y se fortalece con constancia.</p>
+          <p class="mt-4 leading-8 text-gray-300">Nuestro propósito es acercar productos deportivos y una atención útil a quienes convierten el movimiento en parte de su estilo de vida.</p>
+          <div class="mt-8 grid grid-cols-2 gap-5 border-t border-white/15 pt-7">
+            <div><h3 class="font-extrabold text-sport-gold">Misión</h3><p class="mt-2 text-sm leading-6 text-gray-400">Facilitar el acceso a artículos para entrenar con confianza.</p></div>
+            <div><h3 class="font-extrabold text-sport-gold">Visión</h3><p class="mt-2 text-sm leading-6 text-gray-400">Ser una marca cercana a quienes persiguen nuevos retos.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="bg-gray-50 py-20 transition-colors duration-300 sm:py-24 lg:py-28 dark:bg-sport-black">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-8 sm:mb-10"><p class="text-xs font-extrabold uppercase tracking-[.3em] text-amber-600 dark:text-sport-gold">Inspiración diaria</p><h2 class="mt-3 text-3xl font-black uppercase leading-tight sm:text-4xl lg:text-5xl">Vive el <span class="text-amber-600 dark:text-sport-gold">movimiento.</span></h2></div>
+        <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <img class="aspect-[4/5] h-auto w-full rounded-xl object-cover shadow-sm transition-transform duration-500 hover:-translate-y-1 md:h-64 md:aspect-auto" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80" alt="Entrenamiento de fuerza en gimnasio" loading="lazy">
+          <img class="aspect-[4/5] h-auto w-full rounded-xl object-cover shadow-sm transition-transform duration-500 hover:-translate-y-1 md:mt-10 md:h-64 md:aspect-auto" src="https://images.unsplash.com/photo-1517963628607-235ccdd5476c?auto=format&fit=crop&w=700&q=80" alt="Atleta realizando ejercicio físico" loading="lazy">
+          <img class="aspect-[4/5] h-auto w-full rounded-xl object-cover shadow-sm transition-transform duration-500 hover:-translate-y-1 md:h-64 md:aspect-auto" src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=700&q=80" alt="Persona corriendo al aire libre" loading="lazy">
+          <img class="aspect-[4/5] h-auto w-full rounded-xl object-cover shadow-sm transition-transform duration-500 hover:-translate-y-1 md:mt-10 md:h-64 md:aspect-auto" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=700&q=80" alt="Entrenamiento con pesas" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section id="preguntas" class="bg-white py-20 transition-colors duration-300 sm:py-24 lg:py-28 dark:bg-[#181818]">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-8">
+        <div><p class="text-xs font-extrabold uppercase tracking-[.3em] text-amber-600 dark:text-sport-gold">¿Tienes dudas?</p><h2 class="mt-3 text-3xl font-black uppercase leading-tight sm:text-4xl lg:text-5xl">Preguntas <span class="text-amber-600 dark:text-sport-gold">frecuentes.</span></h2><p class="mt-5 leading-7 text-gray-600 dark:text-gray-400">Encuentra respuestas rápidas sobre nuestros productos y la experiencia SALOMÓN SPORT.</p></div>
+        <div class="divide-y divide-gray-200 dark:divide-white/10">
+          <div class="faq-item py-5"><button id="faq-button-1" class="faq-button flex w-full items-center justify-between gap-4 rounded-lg text-left font-bold" aria-expanded="false" aria-controls="faq-panel-1"><span>¿Cómo puedo consultar la disponibilidad de un producto?</span><span class="faq-symbol text-xl text-amber-600 dark:text-sport-gold" aria-hidden="true">+</span></button><div id="faq-panel-1" class="faq-panel pt-4 text-sm leading-7 text-gray-600 dark:text-gray-400" role="region" aria-labelledby="faq-button-1" hidden>Puedes escribirnos mediante el formulario de contacto indicando el producto que te interesa. Te responderemos con información de disponibilidad.</div></div>
+          <div class="faq-item py-5"><button id="faq-button-2" class="faq-button flex w-full items-center justify-between gap-4 rounded-lg text-left font-bold" aria-expanded="false" aria-controls="faq-panel-2"><span>¿Los precios están expresados en pesos colombianos?</span><span class="faq-symbol text-xl text-amber-600 dark:text-sport-gold" aria-hidden="true">+</span></button><div id="faq-panel-2" class="faq-panel pt-4 text-sm leading-7 text-gray-600 dark:text-gray-400" role="region" aria-labelledby="faq-button-2" hidden>Sí. Los precios de demostración están expresados en pesos colombianos (COP).</div></div>
+          <div class="faq-item py-5"><button id="faq-button-3" class="faq-button flex w-full items-center justify-between gap-4 rounded-lg text-left font-bold" aria-expanded="false" aria-controls="faq-panel-3"><span>¿Puedo recibir asesoría para elegir accesorios?</span><span class="faq-symbol text-xl text-amber-600 dark:text-sport-gold" aria-hidden="true">+</span></button><div id="faq-panel-3" class="faq-panel pt-4 text-sm leading-7 text-gray-600 dark:text-gray-400" role="region" aria-labelledby="faq-button-3" hidden>Sí. Puedes contarnos qué tipo de actividad realizas y qué producto buscas para recibir orientación.</div></div>
+          <div class="faq-item py-5"><button id="faq-button-4" class="faq-button flex w-full items-center justify-between gap-4 rounded-lg text-left font-bold" aria-expanded="false" aria-controls="faq-panel-4"><span>¿Este sitio permite realizar pagos en línea?</span><span class="faq-symbol text-xl text-amber-600 dark:text-sport-gold" aria-hidden="true">+</span></button><div id="faq-panel-4" class="faq-panel pt-4 text-sm leading-7 text-gray-600 dark:text-gray-400" role="region" aria-labelledby="faq-button-4" hidden>No. Esta versión es un prototipo académico de presentación y contacto; no procesa pedidos ni pagos reales.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="bg-gray-100 py-20 transition-colors duration-300 sm:py-24 lg:py-28 dark:bg-sport-black">
+      <div class="mx-auto grid max-w-7xl gap-10 px-5 sm:gap-12 lg:grid-cols-2 lg:px-8">
+        <div class="flex flex-col justify-center">
+          <p class="text-xs font-extrabold uppercase tracking-[.3em] text-amber-700 dark:text-sport-gold">Hablemos de tus objetivos</p>
+          <h2 class="mt-3 text-3xl font-black uppercase leading-tight sm:text-4xl lg:text-5xl">Da el primer <span class="text-amber-600 dark:text-sport-gold">paso.</span></h2>
+          <p class="mt-6 max-w-lg leading-8 text-gray-600 dark:text-gray-400">¿Buscas un producto o necesitas orientación? Déjanos tus datos y tu mensaje. Queremos conocer tus próximos retos.</p>
+          <div class="mt-9 space-y-4 text-sm"><p><span class="mr-3 text-sport-gold">✉</span> contacto@salomonsport.com (dato de demostración)</p><p><span class="mr-3 text-sport-gold">⌖</span> Neiva, Huila, Colombia</p><p><span class="mr-3 text-sport-gold">◷</span> Atención: lunes a sábado</p></div>
+        </div>
+        <form id="contactForm" novalidate class="rounded-2xl border border-gray-200 bg-white p-4 shadow-xl min-[430px]:p-5 sm:p-9 dark:border-white/10 dark:bg-sport-gray">
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
+            <div class="sm:col-span-2"><label for="fullName" class="mb-2 block text-sm font-bold">Nombre completo <span class="text-red-600">*</span></label><input id="fullName" name="fullName" type="text" autocomplete="name" required class="form-field w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition-all duration-300 placeholder:text-gray-400 sm:text-sm focus:border-sport-gold focus:shadow-[0_8px_24px_rgba(212,175,55,.18)] focus:ring-2 focus:ring-sport-gold/25 dark:border-white/20 dark:bg-[#202020] dark:text-white" placeholder="Escribe tu nombre"><p class="error-message mt-1 text-xs text-red-600" id="nameError" aria-live="polite"></p></div>
+            <div><label for="email" class="mb-2 block text-sm font-bold">Correo electrónico <span class="text-red-600">*</span></label><input id="email" name="email" type="email" autocomplete="email" required class="form-field w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition-all duration-300 placeholder:text-gray-400 sm:text-sm focus:border-sport-gold focus:shadow-[0_8px_24px_rgba(212,175,55,.18)] focus:ring-2 focus:ring-sport-gold/25 dark:border-white/20 dark:bg-[#202020] dark:text-white" placeholder="correo@ejemplo.com"><p class="error-message mt-1 text-xs text-red-600" id="emailError" aria-live="polite"></p></div>
+            <div><label for="phone" class="mb-2 block text-sm font-bold">Teléfono</label><input id="phone" name="phone" type="tel" autocomplete="tel" class="form-field w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition-all duration-300 placeholder:text-gray-400 sm:text-sm focus:border-sport-gold focus:shadow-[0_8px_24px_rgba(212,175,55,.18)] focus:ring-2 focus:ring-sport-gold/25 dark:border-white/20 dark:bg-[#202020] dark:text-white" placeholder="Tu número (opcional)"></div>
+            <div class="sm:col-span-2"><label for="message" class="mb-2 block text-sm font-bold">Mensaje <span class="text-red-600">*</span></label><textarea id="message" name="message" rows="4" required class="form-field w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition-all duration-300 placeholder:text-gray-400 sm:text-sm focus:border-sport-gold focus:shadow-[0_8px_24px_rgba(212,175,55,.18)] focus:ring-2 focus:ring-sport-gold/25 dark:border-white/20 dark:bg-[#202020] dark:text-white" placeholder="Cuéntanos qué estás buscando..."></textarea><p class="error-message mt-1 text-xs text-red-600" id="messageError" aria-live="polite"></p></div>
+          </div>
+          <button type="submit" class="mt-6 w-full rounded-full bg-sport-gold px-7 py-4 text-sm font-black uppercase tracking-widest text-sport-black shadow-[0_10px_24px_rgba(212,175,55,.18)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-sport-gold-light hover:shadow-[0_14px_30px_rgba(212,175,55,.28)] active:scale-[.99]">Enviar mensaje <span aria-hidden="true">→</span></button>
+          <p class="mt-4 text-center text-xs text-gray-500 dark:text-gray-400">Prototipo académico: el formulario valida los datos, pero no envía correos a un servidor.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="border-t border-sport-gold/20 bg-sport-black py-14 text-white sm:py-16">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="grid gap-10 border-b border-white/10 pb-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="lg:col-span-2"><a href="#inicio" class="inline-block text-2xl font-black tracking-[.12em] transition-colors duration-300 hover:text-sport-gold">SALOMÓN<span class="text-sport-gold">.</span> SPORT</a><p class="mt-4 max-w-sm text-sm leading-7 text-gray-400">Equipamiento, actitud y motivación para acompañarte en cada paso de tu camino deportivo.</p></div>
+        <div><h3 class="font-extrabold text-sport-gold">Explora</h3><ul class="mt-4 space-y-3 text-sm text-gray-400"><li><a class="transition-colors duration-300 hover:text-sport-gold" href="#productos">Productos</a></li><li><a class="transition-colors duration-300 hover:text-sport-gold" href="#servicios">Servicios</a></li><li><a class="transition-colors duration-300 hover:text-sport-gold" href="#nosotros">Nosotros</a></li><li><a class="transition-colors duration-300 hover:text-sport-gold" href="#contacto">Contacto</a></li></ul></div>
+        <div><h3 class="font-extrabold text-sport-gold">Síguenos</h3><p class="mt-4 text-sm leading-7 text-gray-400">Conecta con SALOMÓN SPORT y comparte tu progreso.</p><p class="mt-3 text-xs text-gray-500">Redes sociales de demostración</p></div>
+      </div>
+      <div class="flex flex-col justify-between gap-3 pt-7 text-xs text-gray-500 sm:flex-row"><p>© <span id="currentYear"></span> SALOMÓN SPORT. Proyecto académico.</p><a href="#inicio" class="transition hover:text-sport-gold">Volver arriba ↑</a></div>
+    </div>
+  </footer>
+
+  <!-- MENSAJE TOAST -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 left-1/2 z-[60] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 translate-y-5 rounded-xl border border-green-300 bg-green-700 px-5 py-4 text-center text-sm font-semibold text-white opacity-0 shadow-2xl transition-all duration-300">
+    ¡Mensaje validado! Gracias por contactar a SALOMÓN SPORT.
+  </div>
+
+  <!-- JAVASCRIPT: menú, tema, acordeón, formulario y botones de producto -->
+  <script>
+    // Referencias a elementos principales del documento
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const menuIcon = document.getElementById("menuIcon");
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const toast = document.getElementById("toast");
+
+    // MENÚ HAMBURGUESA: abre y cierra la navegación móvil
+    function setMobileMenu(open) {
+      navLinks.classList.toggle("hidden", !open);
+      navLinks.classList.toggle("flex", open);
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      menuIcon.textContent = open ? "✕" : "☰";
+    }
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = !navLinks.classList.contains("hidden");
+      setMobileMenu(!isOpen);
+    });
+
+    // Cierra el menú móvil al seleccionar una sección
+    document.querySelectorAll(".nav-link, #navLinks a[href^='#']").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 767px)").matches) setMobileMenu(false);
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+        setMobileMenu(false);
+        menuToggle.focus();
+      }
+    });
+
+    // MODO OSCURO: recupera la preferencia guardada o usa el tema claro
+    const savedTheme = localStorage.getItem("salomon-sport-theme");
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+    updateThemeIcon();
+
+    function updateThemeIcon() {
+      const darkEnabled = document.documentElement.classList.contains("dark");
+      themeIcon.textContent = darkEnabled ? "☾" : "☼";
+      themeToggle.setAttribute("aria-label", darkEnabled ? "Activar modo claro" : "Activar modo oscuro");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+      const selectedTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("salomon-sport-theme", selectedTheme);
+      updateThemeIcon();
+    });
+
+    // ACORDEÓN: permite abrir una pregunta a la vez
+    document.querySelectorAll(".faq-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const panel = button.nextElementSibling;
+        const wasExpanded = button.getAttribute("aria-expanded") === "true";
+
+        document.querySelectorAll(".faq-button").forEach((otherButton) => {
+          otherButton.setAttribute("aria-expanded", "false");
+          otherButton.querySelector(".faq-symbol").textContent = "+";
+          otherButton.nextElementSibling.hidden = true;
+        });
+
+        if (!wasExpanded) {
+          button.setAttribute("aria-expanded", "true");
+          button.querySelector(".faq-symbol").textContent = "−";
+          panel.hidden = false;
+        }
+      });
+    });
+
+    // TOAST: muestra una confirmación durante cuatro segundos
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("toast-show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("toast-show"), 4000);
+    }
+
+    // FORMULARIO: valida campos obligatorios y formato del correo
+    const contactForm = document.getElementById("contactForm");
+    const nameInput = document.getElementById("fullName");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+
+    function setError(input, errorId, message) {
+      document.getElementById(errorId).textContent = message;
+      input.setAttribute("aria-invalid", message ? "true" : "false");
+      input.classList.toggle("border-red-500", Boolean(message));
+      input.classList.toggle("ring-2", Boolean(message));
+      input.classList.toggle("ring-red-500/20", Boolean(message));
+      input.classList.toggle("border-gray-300", !message && !input.value.trim());
+      input.classList.toggle("border-sport-gold/70", !message && Boolean(input.value.trim()));
+    }
+
+    function getFieldError(input) {
+      const value = input.value.trim();
+
+      if (input === nameInput) {
+        return value.length < 3 ? "Escribe un nombre de al menos 3 caracteres." : "";
+      }
+
+      if (input === emailInput) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        return !emailPattern.test(value) ? "Escribe un correo electrónico válido." : "";
+      }
+
+      return value.length < 10 ? "El mensaje debe tener al menos 10 caracteres." : "";
+    }
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const validation = [
+        [nameInput, "nameError", getFieldError(nameInput)],
+        [emailInput, "emailError", getFieldError(emailInput)],
+        [messageInput, "messageError", getFieldError(messageInput)]
+      ];
+
+      validation.forEach(([input, errorId, message]) => setError(input, errorId, message));
+
+      const hasErrors = validation.some(([, , message]) => Boolean(message));
+
+      if (hasErrors) {
+        const firstInvalid = contactForm.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      contactForm.reset();
+      [nameInput, emailInput, messageInput].forEach((input) => {
+        setError(input, input === nameInput ? "nameError" : input === emailInput ? "emailError" : "messageError", "");
+      });
+      showToast("¡Mensaje validado! Gracias por contactar a SALOMÓN SPORT.");
+    });
+
+    // Limpia el mensaje de error mientras la persona corrige el campo
+    [[nameInput, "nameError"], [emailInput, "emailError"], [messageInput, "messageError"]].forEach(([input, errorId]) => {
+      input.addEventListener("input", () => {
+        if (input.getAttribute("aria-invalid") === "true") {
+          setError(input, errorId, getFieldError(input));
+        }
+      });
+      input.addEventListener("blur", () => {
+        if (input.value.trim() || input.getAttribute("aria-invalid") === "true") {
+          setError(input, errorId, getFieldError(input));
+        }
+      });
+    });
+
+    // BOTONES DE PRODUCTO: simulación visual de añadir al carrito
+    document.querySelectorAll(".add-cart").forEach((button) => {
+      button.addEventListener("click", () => {
+        showToast(button.dataset.product + " se añadió a tu selección (demostración).");
+      });
+    });
+
+    // Actualiza automáticamente el año del pie de página
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
